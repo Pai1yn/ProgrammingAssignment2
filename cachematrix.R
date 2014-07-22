@@ -1,3 +1,6 @@
+##makeCacheMatrix takes any invertible matrix as argument and stores it as
+##a special object for which cacheSolve returns the inverse, either from the cache
+##or by calculating it for the first time
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL ##original set to NULL
   set <- function(y) {
@@ -18,9 +21,9 @@ cacheSolve <- function(x, ...) {
     message("getting cached data") ##if inverse has been stored
     return(m)
   }
-  data <- x$get() ##if inverse not stored, solve matrix  }
+  data <- x$get() ##if inverse not stored, solve matrix
   m <- solve(data, ...)
   x$setsolve(m) ##store inverse
-  m ##return inverse of matrix
+  m ##return inverse of matrix either from cache or from calculation (solve)
 }
 
