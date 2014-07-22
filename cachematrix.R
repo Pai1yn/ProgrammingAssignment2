@@ -19,7 +19,13 @@ cacheSolve <- function(x, ...) {
     return(m)
   }
   data <- x$get() ##if inverse not stored, solve matrix
+  d <- det(data)
+  if(d==0)  {
+    message("Non-Invertible Matrix")
+    return
+  }
   m <- solve(data, ...)
   x$setsolve(m) ##store inverse
   m ##return inverse of matrix
 }
+
